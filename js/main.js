@@ -67,28 +67,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.fade-in-up');
     animatedElements.forEach(el => observer.observe(el));
 
-    // Form Submission (Prevent default for demonstration)
+    // Form Submission with Web3Forms
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             
-            // Simulate API call
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-green');
-                contactForm.reset();
-                
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-green');
+                    contactForm.reset();
+                } else {
+                    btn.innerHTML = '<i class="fas fa-times"></i> Failed to send';
+                    console.error("Error:", data);
+                }
+            } catch (error) {
+                btn.innerHTML = '<i class="fas fa-times"></i> Network Error';
+                console.error("Fetch error:", error);
+            } finally {
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.classList.add('btn-primary');
                     btn.classList.remove('btn-green');
                 }, 3000);
-            }, 1500);
+            }
         });
     }
 });

@@ -331,17 +331,22 @@
                 </div>
                 <div class="contact-form fade-in-up" style="transition-delay: 0.2s;">
                     <form id="contactForm">
+                        <input type="hidden" name="access_key" value="2ee6f148-eda1-45ec-9033-e7c0c8c932f0">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" required placeholder="John Doe">
+                            <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" required placeholder="john@example.com">
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" required placeholder="+91 90000 00000">
+                            <input type="tel" id="phone" name="phone" class="form-control" required placeholder="+91 90000 00000">
                         </div>
                         <div class="form-group">
                             <label for="service">Service Needed</label>
-                            <select id="service" class="form-control" required>
+                            <select id="service" name="service" class="form-control" required>
                                 <option value="" disabled selected>Select a service</option>
                                 <option value="Mutual Funds">Mutual Funds</option>
                                 <option value="Health Insurance">Health Insurance</option>
@@ -352,7 +357,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message</label>
-                            <textarea id="message" class="form-control" required placeholder="How can we help you?"></textarea>
+                            <textarea id="message" name="message" class="form-control" required placeholder="How can we help you?"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                     </form>
@@ -375,7 +380,7 @@
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/bhumitfinserv.in/" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
